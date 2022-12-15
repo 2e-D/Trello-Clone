@@ -1,7 +1,8 @@
 <script setup>
+import Remove from "./icons/Remove.vue";
 import { ref } from "vue";
 import Modal from "./Modal.vue";
-const emit = defineEmits(["complete"]);
+const emit = defineEmits(["delete-item"]);
 const props = defineProps({
   task: {
     type: String,
@@ -27,8 +28,9 @@ const closeModal = () => {
     <li v-if="props.completed">
       <a class="link" href="#" @click="openModal">{{ props.task }}</a>
       <Modal :open="isModalOpen" @close="closeModal"
-        ><h1>{{ props.task }}</h1></Modal
-      >
+        ><h1>{{ props.task }}</h1>
+        <input type="text class=editor-text" />
+      </Modal>
     </li>
 
     <li v-else>

@@ -48,13 +48,15 @@ const close = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 35%;
+  margin-top: 15%;
   border-radius: 30px;
+  flex-wrap: wrap;
 }
 
 .modal-heading {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: relative;
 }
 </style>

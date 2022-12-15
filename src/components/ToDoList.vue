@@ -1,8 +1,15 @@
 <script setup>
+import Remove from "./icons/Remove.vue";
 import { ref } from "vue";
 import ToDoListItem from "./ToDoListItem.vue";
 const listItems = ref([]);
 const todo = ref("");
+const emit = defineEmits({});
+const props = defineProps({
+  list: {
+    type: Object,
+  },
+});
 
 const AddToList = () => {
   listItems.value.push({
@@ -13,7 +20,7 @@ const AddToList = () => {
 };
 
 const remove = (key) => {
-  this.items.splice(key, 1);
+  this.Listitems.splice(key, 1);
 };
 
 const completeItems = (index) => {
@@ -23,16 +30,21 @@ const completeItems = (index) => {
 
 <template>
   <div class="container">
-    <input class="section" placeholder="To-Do" type="text" />
+    <input
+      class="section"
+      :value="list.title"
+      placeholder="Board Name"
+      type="text"
+    />
 
     <input
       class="toDoInput"
-      placeholder="Add a To-Do"
+      placeholder="Add your task"
       type="text"
       v-model="todo"
     />
     <button @click="AddToList">Add</button>
-
+    <Remove @click="remove(index)"></Remove>
     <ul>
       <ToDoListItem
         v-for="(item, index) in listItems"
@@ -85,7 +97,7 @@ ul {
   display: flex;
   margin-right: 33px;
   flex-direction: column;
-  max-width: fit-content;
+  width: 150px;
   text-align: center;
   align-items: center;
 }
